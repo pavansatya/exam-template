@@ -32,10 +32,10 @@ user_name="developer"
 group_name="developer"
 
 development_directory="exam"
-#user_files=" pyproject.toml .cspell.json .gitattributes .gitignore LICENSE README.md"
+user_files="pyproject.toml .cspell.json .gitattributes .gitignore LICENSE README.md"
 
 chown -R "$user_name":"$group_name" "$development_directory" \
-&& chown "$user_name":"$group_name" pyproject.toml .cspell.json .gitattributes .gitignore LICENSE README.md
+&& chown "$user_name":"$group_name" $user_files
 
 if [ $? -eq 0 ]; then
     echo "Success!"
@@ -52,17 +52,7 @@ ln -sf /usr/bin/python3 /usr/bin/python
 # Extra package installation
 # ==========================
 
-echo "Installing Git LFS..."
 
-apt-get install git-lfs &&
-git lfs install
-
-if [ $? -eq 0 ]; then
-    echo "Git LFS installed!"
-else
-    echo "Failed to install Git LFS."
-    exit 1
-fi
 
 # =====================
 # Account configuration
