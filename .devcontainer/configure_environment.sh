@@ -26,9 +26,16 @@ else
     exit 1
 fi
 
-echo "Changing ownership of all files in workspace to user group..."
+echo "Changing ownership of files in workspace to user group..."
 
-sudo chown -R developer:developer .
+user_name="developer"
+group_name="developer"
+
+development_directory="exam"
+#user_files=" pyproject.toml .cspell.json .gitattributes .gitignore LICENSE README.md"
+
+chown -R "$user_name":"$group_name" "$development_directory" \
+&& chown "$user_name":"$group_name" pyproject.toml .cspell.json .gitattributes .gitignore LICENSE README.md
 
 if [ $? -eq 0 ]; then
     echo "Success!"
@@ -44,38 +51,6 @@ ln -sf /usr/bin/python3 /usr/bin/python
 # ==========================
 # Extra package installation
 # ==========================
-
-echo "Installing http-server..."
-
-npm i -g http-server
-
-if [ $? -eq 0 ]; then
-    echo "http-server installed!"
-else
-    echo "Failed to install http-server."
-    exit 1
-fi
-
-echo "Installing texlive..."
-
-apt-get -y update
-apt-get -y install texlive
-
-if [ $? -eq 0 ]; then
-    echo "Texlive installed!"
-else
-    echo "Failed to install texlive."
-    exit 1
-fi
-
-apt-get -y install dvipng texlive-latex-extra texlive-fonts-recommended cm-super
-
-if [ $? -eq 0 ]; then
-    echo "Texlive extras and fonts installed!"
-else
-    echo "Failed to install texlive extras and fonts."
-    exit 1
-fi
 
 echo "Installing Git LFS..."
 
@@ -93,8 +68,6 @@ fi
 # Account configuration
 # =====================
 
-user_name="developer"
-group_name="developer"
 command_line_aliases_file="https://raw.githubusercontent.com/mauro-j-sanchirico/personal-scripts/refs/heads/main/bash_aliases/command_line.bash_aliases"
 git_aliases_file="https://raw.githubusercontent.com/mauro-j-sanchirico/personal-scripts/refs/heads/main/bash_aliases/git.bash_aliases"
 poetry_aliases_file="https://raw.githubusercontent.com/mauro-j-sanchirico/personal-scripts/refs/heads/main/bash_aliases/poetry.bash_aliases"
@@ -141,11 +114,11 @@ echo "export PATH=\"$developer_home/$poetry_dir:\$PATH\"" >> $developer_home/.ba
 
 echo "Configuring Poetry virtual environments..."
 
-"$poetry_command" config virtualenvs.in-project true
+sudo -u "$user_name" "$poetry_command" config virtualenvs.in-project true
 
 echo "Installing repository..."
 
-"$poetry_command" install --with dev --no-root
+sudo -u "$user_name" "$poetry_command" install --with dev
 
 if [ $? -eq 0 ]; then
     echo "Repository dependencies installed!"
