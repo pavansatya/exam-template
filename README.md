@@ -4,7 +4,7 @@ Template for lecture notes with reveal.js presentations, latex dependencies, poe
 
 ## Installation and Usage
 
-### Installation and Use via Github Codespaces (Recommended)
+### Installation and Use via Github Codespaces
 
 To use this repository via codespaces simply click on the `code` &rarr; `codespaces` &rarr; `create codespace on main` buttons.
 
@@ -16,87 +16,15 @@ Note the codespace might take a long time to build. This is usually due to TexLi
 
 If required, use `Cmd` / `Ctrl` + `Shift` + `P` &rarr; `Codespaces: Rebuild Container` to rebuild the container. Do not use `gh codespace rebuild`. This takes a long time since it re-downloads the entire image.
 
-### Display of Presentations via Github Codespaces (Recommended)
+### Installation and Use via VSCode DevContainer
 
-Navigate to the `presentations` folder.
+To ue this repository via a Dev Container, ensure you have Docker Desktop install and functioning on your system and have the Dev Containers extension in VSCode. Clone the repository and open VS Code in the repository root folder.
 
-```bash
-cd presentations
-```
+Once VS Code is opened in the repository's root folder, you should be prompted to open in a Dev Container. If you are not prompted, use `Cmd` / `Ctrl` + `Shift` + `P` &rarr; `Dev Containers: Rebuild and Reopen in Container`.
 
-Start an http-server.
+### Using Scripts and Notebooks
 
-```bash
-bash ../scripts/start_server.sh
-```
-
-### Dependencies for Local Installation
-
-#### Reveal.js
-
-This project is built on [reveal.js](https://revealjs.com/). All reveal.js dependencies are included in the repository. The repository itself is a modified [basic setup](https://revealjs.com/installation/#basic-setup) of reveal.js.
-
-#### Poetry
-
-This project is built on Python 3.12. Poetry is required for installation. To install Poetry, view the instructions [here](https://python-poetry.org/docs/).
-
-In codespaces, Poetry installation is handled in the development container. The user does not need to install Poetry if working in codespaces.
-
-#### TexLive
-
-This project also requires TexLive to render math fonts. Texlive can be installed via the following commands.
-
-```bash
-sudo apt-get -y update
-sudo apt-get -y install texlive
-sudo apt-get -y install dvipng texlive-latex-extra texlive-fonts-recommended cm-super
-```
-
-In codespaces, TexLive installation is also handled in the development container. The user does not need to install these packages if working in codespaces.
-
-### Local Installation
-
-To install locally, first install the required dependencies (Poetry and TexLive), then clone the repository and navigate to its directory.
-
-```bash
-git clone https://github.com/ruc-practical-ai/example-reveal-js-presentation.git
-cd example-reveal-js-presentation
-```
-
-#### Viewing HTML Pages Directly in a Browser from Local Installation
-
-To view HTML pages directly in a browser, simply navigate to the pages of interest and open them with a preferred web browser.
-
-#### Installing Python Dependencies Locally
-
-To install locally, first install the required dependencies (Poetry and TexLive), then clone the repository and navigate to its directory.
-
-```bash
-git clone https://github.com/ruc-practical-ai/loaded-lecture-template.git
-cd loaded-lecture-template
-```
-
-Configure Poetry to install its virtual environment inside the repository directory.
-
-```bash
-poetry config virtualenvs.in-project true
-```
-
-Install the repository's Python dependencies.
-
-```bash
-poetry install --no-root
-```
-
-Check where Poetry built the virtual environment with the following command.
-
-```bash
-poetry env info --path
-```
-
-Open the command pallette with `Ctrl` + `Shift` + `P` and type `Python: Select Interpreter`.
-
-Now specify that VSCode should use the that interpreter (the one in `./.venv/Scripts/python.exe`). Once you specify this, Jupyter notebooks should show the project's interpreter as an option when you click the `kernel` icon or the small icon showing the current version of python (e.g., `Python 3.12.1`) and then click `Select Another Kernel`, and finally click `Python Environments...`.
+This repository uses Poetry to build a local Python environment in the `.venv` directory. When you are running scripts, ensure you are using the correct Python interpreter. Do this by `Cmd` / `Ctrl` + `Shift` + `P` &rarr; `Python: Select Interpreter` and selecting the `.venv` Python environment. When you are running Jupyter notebooks, be sure to use the `.venv` Python by clicking `Select Kernel` and selecting the Python environment in `.venv`.
 
 ## License
 
