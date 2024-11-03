@@ -25,6 +25,18 @@ else
 fi
 
 echo ""
+echo "Creating alias localpy to local Python environment..."
+
+echo 'alias localpy="$(pwd)/.venv/bin/python"' >> ~/.bashrc
+
+if [ $? -eq 0 ]; then
+    echo "Alias created! To run a script with your local python use:"
+    echo "localpy path/to/script.py"
+else
+    echo "Failed to create alias."
+fi
+
+echo ""
 echo "Logged in as user:"
 whoami
 

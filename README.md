@@ -26,6 +26,14 @@ Once VS Code is opened in the repository's root folder, you should be prompted t
 
 This repository uses Poetry to build a local Python environment in the `.venv` directory. When you are running scripts, ensure you are using the correct Python interpreter. Do this by `Cmd` / `Ctrl` + `Shift` + `P` &rarr; `Python: Select Interpreter` and selecting the `.venv` Python environment. When you are running Jupyter notebooks, be sure to use the `.venv` Python by clicking `Select Kernel` and selecting the Python environment in `.venv`.
 
+Note that after you change your interpreter you might need to restart the Python language server for VS Code to recognize your changes. Do this using `Cmd` / `Ctrl` + `Shift` + `P` &rarr; `Python: Restart Language Server`.
+
+To run a Python script on the command line use the following command.
+
+```bash
+.venv/bin/python exam/example.py
+```
+
 ## License
 
 This repository is provided with an MIT license. See the `LICENSE` file.
