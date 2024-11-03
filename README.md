@@ -1,6 +1,6 @@
-# Loaded Lecture Template
+# Exam Template
 
-Template for lecture notes with reveal.js presentations, latex dependencies, poetry, and VS Code extensions for Python.
+Template for midterm exam with dependencies for machine learning problems.
 
 ## Installation and Usage
 
